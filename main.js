@@ -23,7 +23,6 @@ const spritematerial = new THREE.SpriteMaterial( { map: map } );
 const github = new THREE.Sprite( spritematerial );
 github.scale.set(15,15,1)
 map.userData = { URL: "http://github.com/kiwisontoast"};
-
 scene.add( github );
 
 
