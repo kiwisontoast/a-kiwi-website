@@ -25,14 +25,29 @@ github.scale.set(15,15,1)
 map.userData = { URL: "http://github.com/kiwisontoast"};
 scene.add( github );
 
-
-
+// github.position.z=30;
+// github.position.setX(-10);
 
 const geometry = new THREE.TorusGeometry(10,3,16,300)
 const material = new THREE.MeshStandardMaterial( {color: 0x7180AC, wireframe : true});
 const torus = new THREE.Mesh(geometry,material);
 
 scene.add(torus)
+
+function moveCamera(){
+  const t = document.body.getBoundingClientRect().top;
+  // github.rotation.x+=.05;
+  // github.rotation.y+=.075;
+  // github.rotation.z+=.05;
+
+  torus.rotation.y+=.075;
+  torus.rotation.z+=.01;
+
+  camera.rotation.x = t*-.01;
+  camera.rotation.y = t*-.0002;
+  camera.rotation.z = t*-.0002;
+}
+document.body.onscroll=moveCamera
 
 const pointLight = new THREE.PointLight(0xffffff)
 pointLight.position.set(5,50,0)
