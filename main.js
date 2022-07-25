@@ -15,6 +15,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth,window.innerHeight);
 camera.position.setZ(30);
+camera.position.setX(-3);
 
 renderer.render(scene,camera);
 
@@ -33,6 +34,31 @@ const material = new THREE.MeshStandardMaterial( {color: 0x7180AC, wireframe : t
 const torus = new THREE.Mesh(geometry,material);
 
 scene.add(torus)
+torus.position.z = -3;
+torus.position.setX(20);
+
+const geometry2 = new THREE.TorusGeometry(10,3,16,300)
+const material2 = new THREE.MeshStandardMaterial( {color: 0x7180AC, wireframe : true});
+const torus2 = new THREE.Mesh(geometry2,material2);
+
+scene.add(torus2)
+torus2.position.z = 3;
+torus2.position.setX(-20);
+
+const pointLight = new THREE.PointLight(0xffffff)
+pointLight.position.set(5,50,0)
+
+const ambientLight = new THREE.AmbientLight(0xffffff);
+scene.add(pointLight, ambientLight)
+
+// const lightHelper = new THREE.PointLightHelper(pointLight)
+const gridHelper = new THREE.GridHelper(200, 50);
+scene.add(gridHelper)
+
+const controls = new OrbitControls(camera,renderer.domElement);
+
+const bgTexture = new THREE.TextureLoader().load('gradient.png');
+scene.background = bgTexture;
 
 function moveCamera(){
   const t = document.body.getBoundingClientRect().top;
@@ -43,26 +69,14 @@ function moveCamera(){
   torus.rotation.y+=.075;
   torus.rotation.z+=.01;
 
+  torus2.rotation.y+=.075;
+  torus2.rotation.z+=.01;
+
   camera.rotation.x = t*-.01;
   camera.rotation.y = t*-.0002;
   camera.rotation.z = t*-.0002;
 }
 document.body.onscroll=moveCamera
-
-const pointLight = new THREE.PointLight(0xffffff)
-pointLight.position.set(5,50,0)
-
-const ambientLight = new THREE.AmbientLight(0xffffff);
-scene.add(pointLight, ambientLight)
-
-// const lightHelper = new THREE.PointLightHelper(pointLight)
-// const gridHelper = new THREE.gridHelper(20,50);
-// scene.add(lightHelper,gridHelper)
-
-const controls = new OrbitControls(camera,renderer.domElement);
-
-const skobeloffTexture = new THREE.TextureLoader().load('gradient.png');
-scene.background = skobeloffTexture;
 
 function animate(){
   requestAnimationFrame(animate);
