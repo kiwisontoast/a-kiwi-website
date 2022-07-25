@@ -26,6 +26,8 @@ map.userData = { URL: "http://github.com/kiwisontoast"};
 scene.add( github );
 
 
+
+
 const geometry = new THREE.TorusGeometry(10,3,16,300)
 const material = new THREE.MeshStandardMaterial( {color: 0x7180AC, wireframe : true});
 const torus = new THREE.Mesh(geometry,material);
