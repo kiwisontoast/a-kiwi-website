@@ -26,8 +26,8 @@ github.scale.set(15,15,1)
 map.userData = { URL: "http://github.com/kiwisontoast"};
 scene.add( github );
 
-// github.position.z=30;
-// github.position.setX(-10);
+github.position.z=-3;
+github.position.setX(20);
 
 const geometry = new THREE.TorusGeometry(10,3,16,300)
 const material = new THREE.MeshStandardMaterial( {color: 0x7180AC, wireframe : true});
@@ -43,7 +43,7 @@ const torus2 = new THREE.Mesh(geometry2,material2);
 
 scene.add(torus2)
 torus2.position.z = 3;
-torus2.position.setX(-20);
+torus2.position.setX(-15);
 
 const pointLight = new THREE.PointLight(0xffffff)
 pointLight.position.set(5,50,0)
@@ -52,8 +52,8 @@ const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(pointLight, ambientLight)
 
 // const lightHelper = new THREE.PointLightHelper(pointLight)
-const gridHelper = new THREE.GridHelper(200, 50);
-scene.add(gridHelper)
+// const gridHelper = new THREE.GridHelper(200, 50);
+// scene.add(gridHelper)
 
 const controls = new OrbitControls(camera,renderer.domElement);
 
@@ -84,6 +84,10 @@ function animate(){
 torus.rotation.x += .01;
 torus.rotation.y += .005;
 torus.rotation.z += .01;
+
+torus2.rotation.x += .01;
+torus2.rotation.y += .005;
+torus2.rotation.z += .01;
 
   renderer.render(scene,camera);
 }
